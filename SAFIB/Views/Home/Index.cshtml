@@ -1,0 +1,37 @@
+﻿@model List<Subvision>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<form method="post" asp-action="Search">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Введите наименование">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Поиск</button>
+            </span>
+        </div>
+    </div>
+</form>
+
+
+
+<div>
+    <ul class="list-group">
+        @foreach (Subvision subvision in Model)
+        {
+
+        <li class="list-group-item">
+            Наименование: @subvision.Name
+            Статус: @subvision.Status
+            @if(subvision.SubjectionID != null)
+            {
+                @Model.FirstOrDefault(p => p.ID == subvision.SubjectionID).Name;
+            }
+        </li>
+
+        }
+    </ul>
+    </div>

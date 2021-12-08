@@ -1,0 +1,32 @@
+[
+  {
+    "ID": 3,
+    "Name": "Техническая поддержка",
+    "Status": false,
+    "SubjectionID": 2
+  },
+  {
+    "ID": 1,
+    "Name": "Отдел продаж",
+    "Status": false,
+    "SubjectionID": null
+  },
+  {
+    "ID": 2,
+    "Name": "Поддержка пользователей",
+    "Status": false,
+    "SubjectionID": null
+  },
+  {
+    "ID": 4,
+    "Name": "Отдел разработки",
+    "Status": false,
+    "SubjectionID": null
+  },
+  {
+    "ID": 5,
+    "Name": "asdasd",
+    "Status": false,
+    "SubjectionID": null
+  }
+]

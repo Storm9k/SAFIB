@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SAFIB</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+
+</head>
+<body>
+    <div class="page-header">
+        <h1 class="text-center">Тестовое задание САФИБ</h1>
+    </div>
+
+    <div class="container">
+        <a class="btn btn-default center-block" asp-action="Sync">Синхронизировать</a>
+        @RenderBody()
+    </div>
+    
+</body>
+</html>
