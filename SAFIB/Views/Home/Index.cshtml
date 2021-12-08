@@ -5,17 +5,18 @@
 }
 
 
-<form method="post" asp-action="Search">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Введите наименование">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Поиск</button>
-            </span>
+<div class="row">
+    <form method="post" asp-action="Search">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Введите наименование">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Поиск</button>
+                </span>
+            </div>
         </div>
-    </div>
-</form>
-
+    </form>
+</div>
 
 
 <div>
@@ -28,7 +29,7 @@
             Статус: @subvision.Status
             @if(subvision.SubjectionID != null)
             {
-                @Model.FirstOrDefault(p => p.ID == subvision.SubjectionID).Name;
+                 @("Подчинение: ") @Model.FirstOrDefault(p => p.ID == subvision.SubjectionID).Name;
             }
         </li>
 
