@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SAFIB.Models
 {
@@ -13,6 +9,7 @@ namespace SAFIB.Models
         [NotMapped]
         public bool Status { get; set; }
         public int? SubjectionID { get; set; }
-        //public Subvision Subjection { get; set; }
+        [NotMapped]
+        public Subvision Subjection { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace SAFIB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Subvision>().Property(p => p.SubjectionID).Ha;
         }
     }
 }

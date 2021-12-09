@@ -5,31 +5,32 @@
 }
 
 
-<div class="row">
-    <form method="post" asp-action="Search">
+<div class="row row-no-gutters">
+    <form method="post" asp-action="Index" asp-controller="Home">
         <div class="col-lg-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Введите наименование">
+                <input type="text" name="name" class="form-control" placeholder="Введите наименование">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Поиск</button>
+                    <button class="btn btn-default">Поиск</button>
                 </span>
             </div>
         </div>
     </form>
+    <a class="btn btn-default col-lg-6" asp-action="Sync">Синхронизировать</a>
 </div>
 
 
 <div>
-    <ul class="list-group">
+    <ul class="list-group p-3">
         @foreach (Subvision subvision in Model)
         {
 
-        <li class="list-group-item">
+        <li class="list-group-item p1">
             Наименование: @subvision.Name
             Статус: @subvision.Status
             @if(subvision.SubjectionID != null)
             {
-                 @("Подчинение: ") @Model.FirstOrDefault(p => p.ID == subvision.SubjectionID).Name;
+                 @("Подчинение: ") @subvision.Subjection.Name;
             }
         </li>
 

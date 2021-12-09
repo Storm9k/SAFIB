@@ -2,31 +2,42 @@
   {
     "ID": 3,
     "Name": "Техническая поддержка",
-    "Status": false,
-    "SubjectionID": 2
+    "Status": true,
+    "SubjectionID": 2,
+    "Subjection": {
+      "ID": 2,
+      "Name": "Поддержка пользователей",
+      "Status": true,
+      "SubjectionID": null,
+      "Subjection": null
+    }
   },
   {
     "ID": 1,
     "Name": "Отдел продаж",
     "Status": false,
-    "SubjectionID": null
+    "SubjectionID": null,
+    "Subjection": null
   },
   {
     "ID": 2,
     "Name": "Поддержка пользователей",
-    "Status": false,
-    "SubjectionID": null
+    "Status": true,
+    "SubjectionID": null,
+    "Subjection": null
   },
   {
     "ID": 4,
     "Name": "Отдел разработки",
     "Status": false,
-    "SubjectionID": null
+    "SubjectionID": null,
+    "Subjection": null
   },
   {
     "ID": 5,
     "Name": "asdasd",
-    "Status": false,
-    "SubjectionID": null
+    "Status": true,
+    "SubjectionID": null,
+    "Subjection": null
   }
 ]

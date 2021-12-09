@@ -26,7 +26,8 @@ namespace SAFIB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DBConnection")));
-            services.AddScoped<Bservice>();
+
+            services.AddSingleton<Aservice>();
             services.AddHostedService<Aservice>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -43,7 +44,7 @@ namespace SAFIB
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -54,6 +55,7 @@ namespace SAFIB
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

@@ -14,15 +14,14 @@ namespace SAFIB.Services
     {
         private Timer timer;
         private readonly IServiceScopeFactory serviceScopeFactory;
-
-        public Aservice()
-        {
-
-        }
+        public IEnumerable<Subvision> subvisions;
+        CancellationToken clt; //В данный момент нигде не используется
 
         public Aservice(IServiceScopeFactory _serviceScopeFactory)
         {
             serviceScopeFactory = _serviceScopeFactory;
+            RefreshSubvisions();
+            StartAsync(clt);
         }
 
         public Task StartAsync (CancellationToken cancellationToken)
@@ -37,18 +36,23 @@ namespace SAFIB.Services
             return Task.CompletedTask;
         }
 
-        private void RefreshStatus(object state)
+        private void RefreshStatus(object obj)
         {
             Random random = new Random();
+            
+            foreach (Subvision subvision in subvisions)
+            {
+                subvision.Status = random.Next(100) <= 50 ? true : false;
+            }
+        }
+
+        private void RefreshSubvisions()
+        {
             using (var scope = serviceScopeFactory.CreateScope())
             {
-                var bservise = scope.ServiceProvider.GetRequiredService<Bservice>();
-                foreach (Subvision subvision in bservise.SubvisionsResult)
-                {
-                    subvision.Status = random.Next(100) <= 50 ? true : false;
-                }
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                subvisions = dbContext.Subvisions.ToList();
             }
-
         }
 
         public void Dispose()
