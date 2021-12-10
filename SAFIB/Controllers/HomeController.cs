@@ -19,22 +19,28 @@ namespace SAFIB.Controllers
         private readonly IHostingEnvironment env;
         private AppDbContext dbContext;
         static readonly HttpClient httpClient = new HttpClient();
+
+        //Получение зависимостей через конструктор
         public HomeController(IHostingEnvironment _env, AppDbContext context)
         {
             //bservice = _bservice;
             env = _env;
             dbContext = context;
         }
+        //Действие контроллера на получения полного списка
         public async Task<IActionResult> Index()
         {
             return View(await GetSubvisions());
         }
+
+        //Действие контроллера на поиск организации по названию
         [HttpPost]
         public async Task<IActionResult> Index(string name)
         {
             return View(await GetSubvisions(name));
         }
 
+        //Действие контроллера сохранения подразделений
         public async Task<IActionResult> Sync()
         {
             using (FileStream fs = new FileStream($"{env.ContentRootPath}/Subvision.json", FileMode.OpenOrCreate))
@@ -50,7 +56,8 @@ namespace SAFIB.Controllers
             return View();
         }
 
-        public async Task<List<Subvision>> GetSubvisions()
+        //Выгрузка состояний из WEB API сервиса А
+        private async Task<List<Subvision>> GetSubvisions()
         {
             HttpResponseMessage response = await httpClient.GetAsync(new Uri("https://localhost:44316/api/servicea"));
             List<Subvision> SubvisionsList = JsonConvert.DeserializeObject<List<Subvision>>(await response.Content.ReadAsStringAsync());
@@ -62,7 +69,8 @@ namespace SAFIB.Controllers
             return SubvisionsList;
         }
 
-        public async Task<List<Subvision>> GetSubvisions(string name)
+        //Выгрузка состояний из WEB API сервиса А по имени
+        private async Task<List<Subvision>> GetSubvisions(string name)
         {
             HttpResponseMessage response = await httpClient.GetAsync(new Uri($"https://localhost:44316/api/servicea/name={name}"));
             List<Subvision> SubvisionsList = JsonConvert.DeserializeObject<List<Subvision>>(await response.Content.ReadAsStringAsync());

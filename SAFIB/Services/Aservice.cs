@@ -17,6 +17,7 @@ namespace SAFIB.Services
         public IEnumerable<Subvision> subvisions;
         CancellationToken clt; //В данный момент нигде не используется
 
+        //Получение зависимостей через конструктор
         public Aservice(IServiceScopeFactory _serviceScopeFactory)
         {
             serviceScopeFactory = _serviceScopeFactory;
@@ -24,18 +25,21 @@ namespace SAFIB.Services
             StartAsync(clt);
         }
 
+        //Метод запуска фонового сервиса
         public Task StartAsync (CancellationToken cancellationToken)
         {
             timer = new Timer(RefreshStatus, null, TimeSpan.Zero, TimeSpan.FromSeconds(3.0));
             return Task.CompletedTask;
         }
 
+        //Метод остановки фонового сервиса
         public Task StopAsync(CancellationToken stoppingToken)
         {
             timer.Change(Timeout.Infinite, 0);
             return Task.CompletedTask;
         }
 
+        //Метод для выполения объктом типа Timer через делегат
         private void RefreshStatus(object obj)
         {
             Random random = new Random();
@@ -46,6 +50,7 @@ namespace SAFIB.Services
             }
         }
 
+        //Получение списка подразделений из БД
         private void RefreshSubvisions()
         {
             using (var scope = serviceScopeFactory.CreateScope())

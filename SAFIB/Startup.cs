@@ -25,10 +25,10 @@ namespace SAFIB
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DBConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DBConnection"))); //Подключение контекста БД
 
-            services.AddSingleton<Aservice>();
-            services.AddHostedService<Aservice>();
+            services.AddSingleton<Aservice>(); //Регистрация сервиса
+            services.AddHostedService<Aservice>(); //Регистрация сервиса А как фоновой задачи
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
